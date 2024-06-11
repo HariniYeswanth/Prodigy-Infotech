@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="name-role">
+        <h1>Harini Kanumuri</h1>
+        <h2>Web Developer</h2>
+        <hr>
+        <div class="options">
+          <button onclick="showContent('education')">Education</button>
+          <button onclick="showContent('skills')">Technical Skills</button>
+          <button onclick="showContent('projects')">Projects</button>
+          <button onclick="showContent('certifications')">Certifications</button>
+          <button onclick="showContent('activities')">Extra Curricular Activities</button>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="content">
+        <section id="home">
+          <div class="home-content">
+            <div class="text-content">
+              <h2>Hii,</h2>
+              <h2>I'm Harini Kanumuri,</h2>
+              <h2>Web Developer</h2>
+              <p class="connect">Let's Connect</p>
+              <div class="arrow">&#x2192;</div>
+            </div>
+            <div class="image-content">
+              <a href="about.html"><img src="C:\Users\hp\OneDrive\Pictures\port2.jpg" alt="Joe Doe" /></a>
+            </div>
+          </div>
+        </section>
+        <section id="education" class="hidden">
+          <h2>Education</h2>
+          <ul>
+            <li>B.tech in Computer Science (AI&Ml) from NRI Institute Of Technology</li>
+            <li>Intermediate at Sri Chaitanya Junior College</li>
+            <li>Matriculation at Oxford E.M High School</li>
+          </ul>
+          <button onclick="goBack()">Back</button>
+        </section>
+        <section id="skills" class="hidden">
+          <h2>Technical Skills</h2>
+          <ul>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>React</li>
+            <li>Node.js</li>
+          </ul>
+          <button onclick="goBack()">Back</button>
+        </section>
+        <section id="projects" class="hidden">
+          <h2>Projects</h2>
+          <ul>
+            <li>Project 1: Description of Project 1: Done the project Full stack using Java .Developed a web application using a 3-tier architecture</li>
+            <li>Project 2: Description of Project 2: Done the project using python frameworks like django,and also machione learning projects such as brain tumor detection and face detection etc.</li>
+          </ul>
+          <button onclick="goBack()">Back</button>
+        </section>
+        <section id="certifications" class="hidden">
+          <h2>Certifications</h2>
+          <ul>
+            <li>Certification 1: Description of Certification 1: Done the certification on The Joy Of Computing Using python -NPTEL</li>
+            <li>Certification 2: Description of Certification 2:Completed the certification on the SQl bootcamp and have gained the experience on querying the database.</li>
+          </ul>
+          <button onclick="goBack()">Back</button>
+        </section>
+        <section id="activities" class="hidden">
+          <h2>Extra Curricular Activities</h2>
+          <ul>
+            <li>Activity 1: Participation in dance competitions</li>
+            <li>Activity 2: participation in various tech fest events in the college</li>
+          </ul>
+          <button onclick="goBack()">Back</button>
+        </section>
+      </div>
+    </div>
+  </header>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 Harini</p>
+    </div>
+  </footer>
+
+  <script>
+    function showContent(sectionId) {
+      const sections = document.querySelectorAll('section');
+      sections.forEach(section => {
+        if (section.id === sectionId) {
+          section.classList.remove('hidden');
+        } else {
+          section.classList.add('hidden');
+        }
+      });
+    }
+
+    function goBack() {
+      showContent('home');
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      showContent('home');
+    });
+  </script>
+</body>
+</html>

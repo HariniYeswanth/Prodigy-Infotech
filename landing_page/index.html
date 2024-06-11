@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Chinese Richard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-TBDxCvO7Vl5U5nK90UBI+FlrTRpjLjpZBSxGfFveBdV8VlP8v3UQxGY9DwAdRigq" crossorigin="anonymous">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        header {
+            background-color: #333f3ede; /* Change the background color */
+            color: #fff;
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+        .title-container {
+            display: flex;
+            align-items: center;
+        }
+        .title-container h1 {
+            margin-right: 20px;
+            background-color: transparent; /* Remove black background */
+        }
+        .options-container {
+            display: flex;
+            align-items: center;
+            overflow: hidden; /* Ensure "Contact" is not visible initially */
+            width: 75%; /* Adjust width to hide the "Contact" option */
+        }
+        .menu-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; /* Vertically center items */
+        }
+        .menu-item {
+            margin: 10px;
+            padding: 10px;
+            cursor: pointer;
+            transition: color 0.3s;
+            color: #fff;
+            white-space: nowrap; /* Prevent text wrapping */
+        }
+        .menu-item:hover {
+            color: #ff7f50; /* Change color on hover */
+        }
+        .content {
+            padding-top: 150px; /* Adjust padding to avoid content being hidden behind the fixed header */
+            background-image: url('C:/Users/hp/OneDrive/Pictures/b1.jpg'); /* Add background image */
+            background-size: cover;
+            background-position: center;
+            min-height: 2000px; /* Increase height for demonstration purposes */
+        }
+        .section {
+            background-color: rgba(255, 255, 255, 0.8); /* Add background color with transparency */
+            margin: 20px;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .advertisement-container {
+            padding: 20px 0;
+            overflow: hidden; /* Hide overflowing content */
+        }
+        .advertisement {
+            display: flex;
+            justify-content: space-between; /* Adjust spacing between images */
+            animation: scrollImages 5s infinite linear; /* Animation for scrolling images */
+        }
+        .advertisement img {
+            width: 150px; /* Standardize image width */
+            height: 150px; /* Standardize image height */
+            margin-right: 8px; /* Add margin between images */
+            border-radius: 8px;
+            transition: transform 0.5s ease; /* Smooth transition for image change */
+        }
+        .active {
+            color: #ff7f50; /* Change color when active */
+        }
+
+        @keyframes scrollImages {
+            0% {
+                transform: translateX(0%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        /* Blink animation */
+        @keyframes blink {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.3;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        .blink {
+            animation: blink 1s infinite;
+        }
+
+        /* Footer styles */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 5px; /* Reduce padding */
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Adjust the options-container items to the right */
+        .options-container {
+            justify-content: flex-end;
+            width: auto;
+        }
+
+        /* Increase image size and align text beside them */
+        .menu-container img, .services-container img {
+            width: 150px;
+            height: 150px;
+            margin-right: 15px;
+        }
+        .menu-item, .service-item {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Orders section styling */
+        .order-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .order-form div {
+            margin: 10px 0;
+        }
+        .order-form input, .order-form select {
+            padding: 5px;
+            margin-left: 10px;
+        }
+        .order-history {
+            margin-top: 20px;
+        }
+        .order-history table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .order-history th, .order-history td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .order-history th {
+            background-color: #f2f2f2;
+        }
+
+        /* Menu section styling */
+        #menu ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        #menu ul li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            font-size: 18px;
+        }
+        #menu ul li:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="title-container">
+            <h1>The Chinese Richard</h1> <!-- Title -->
+        </div>
+        <div class="options-container">
+            <div class="menu-item" onclick="scrollToSection('home')"><i class="fas fa-home"></i> Home</div>
+            <div class="menu-item" onclick="scrollToSection('specials')"><i class="fas fa-utensils"></i> Today's Special</div>
+            <div class="menu-item" onclick="scrollToSection('menu')"><i class="fas fa-book-open"></i> Menu</div>
+            <div class="menu-item" onclick="scrollToSection('services')"><i class="fas fa-cogs"></i> Services</div>
+            <div class="menu-item" onclick="scrollToSection('orders')"><i class="fas fa-shopping-basket"></i> Orders</div>
+            <div class="menu-item" onclick="scrollToSection('contact')"><i class="fas fa-address-book"></i> Contact</div>
+        </div>
+    </header>
+
+    <div class="content">
+        <div class="advertisement-container">
+            <!-- Placeholder for advertisement block -->
+            <div class="advertisement">
+                <img src="C:\Users\hp\OneDrive\Pictures\adv1.jpg" alt="Advertisement 1">
+                <img src="C:\Users\hp\OneDrive\Pictures\adv2.jpg" alt="Advertisement 2">
+                <img src="C:\Users\hp\OneDrive\Pictures\adv3.jpg" alt="Advertisement 3">
+            </div>
+        </div>
+
+        <!-- Sections for Home, Today's Special, Menu, Services, Orders, and Contact -->
+        <section id="specials" class="section">
+            <h2>Today's Special</h2>
+            <!-- Add special items -->
+            <div class="menu-container">
+                <div class="menu-item">
+                    <img src="C:\Users\hp\OneDrive\Pictures\m1.jpg" alt="Special 1">
+                    <span>Special Item 1</span>
+                </div>
+                <div class="menu-item">
+                    <img src="C:\Users\hp\OneDrive\Pictures\m2.jpg" alt="Special 2">
+                    <span>Special Item 2</span>
+                </div>
+                <div class="menu-item">
+                    <img src="C:\Users\hp\OneDrive\Pictures\m3.jpg" alt="Special 3">
+                    <span>Special Item 3</span>
+                </div>
+                <div class="menu-item">
+                    <img src="C:\Users\hp\OneDrive\Pictures\m4.jpg" alt="Special 4">
+                    <span>Special Item 4</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="menu" class="section">
+            <h2>Menu</h2>
+            <!-- Add menu items list -->
+            <ul>
+                <li>Fried Rice</li>
+                <li>Sweet and Sour Chicken</li>
+                <li>Kung Pao Chicken</li>
+                <li>Spring Rolls</li>
+                <li>Hot and Sour Soup</li>
+                <li>Dim Sum</li>
+                <li>General Tso's Chicken</li>
+                <li>Beef with Broccoli</li>
+                <li>Mapo Tofu</li>
+                <li>Szechuan Shrimp</li>
+            </ul>
+        </section>
+
+        <section id="services" class="section">
+            <h2>Services</h2>
+            <!-- Add service items with images and names -->
+            <div class="services-container">
+                <div class="service-item">
+                    <img src="C:\Users\hp\OneDrive\Pictures\s1.jpg" alt="Service 1">
+                    <span>Nature Feature</span>
+                </div>
+                <div class="service-item">
+                    <img src="C:\Users\hp\OneDrive\Pictures\s2.jpg" alt="Service 2">
+                    <span>Hot aliance</span>
+                </div>
+                <div class="service-item">
+                    <img src="C:\Users\hp\OneDrive\Pictures\s3.jpg" alt="Service 3">
+                    <span>Coffee Time</span>
+                </div>
+                <div class="service-item">
+                    <img src="C:\Users\hp\OneDrive\Pictures\s4.jpg" alt="Service 4">
+                    <span>Ghee tho Khao</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="orders" class="section">
+            <h2>Orders</h2>
+            <!-- Order form -->
+            <div class="order-form">
+                <div>
+                    <label for="item-name">Item Name:</label>
+                    <input type="text" id="item-name" required>
+                </div>
+                <div>
+                    <label for="quantity">Quantity:</label>
+                    <input type="number" id="quantity" required>
+                </div>
+                <div>
+                    <label for="delivery">Delivery Option:</label>
+                    <select id="delivery" required>
+                        <option value="home">Home Delivery</option>
+                        <option value="service">Service</option>
+                    </select>
+                </div>
+                <div>
+                    <button onclick="placeOrder()">Order</button>
+                    <button onclick="resetOrders()">Reset</button>
+                </div>
+            </div>
+            <!-- Order history -->
+            <div id="order-history" class="order-history">
+                <h3>Order History</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Item Name</th>
+                            <th>Quantity</th>
+                            <th>Delivery Option</th>
+                            <th>Timestamp</th>
+                        </tr>
+                    </thead>
+                    <tbody id="history-table-body">
+                        <!-- Orders will be added here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <h2>Contact</h2>
+            <!-- Add contact information and a form here -->
+            <p>Contact No: 9111123334</p>
+            <p>Mail: therichard@gmail.com</p>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 The Chinese Richard. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js" integrity="sha384-vf7B2ha6hZb6jZKzNPqvBCokF5ERcJ9g5KPI04hNfD60gsrXnWFA2zo5dpfD7FUM" crossorigin="anonymous"></script>
+    <script>
+        // Function to handle smooth scrolling to sections
+        function scrollToSection(sectionId) {
+            var section = document.getElementById(sectionId);
+            window.scrollTo({
+                top: section.offsetTop - 50, // Adjust scroll position to avoid hiding content behind the fixed header
+                behavior: 'smooth'
+            });
+
+            // Add blink effect to the clicked menu item
+            var menuItem = document.querySelector('.menu-item.active');
+            if (menuItem) {
+                menuItem.classList.remove('active');
+            }
+            document.querySelector(`[onclick="scrollToSection('${sectionId}')]`).classList.add('active');
+            setTimeout(() => {
+                document.querySelector(`[onclick="scrollToSection('${sectionId}')]`).classList.remove('active');
+            }, 1000);
+        }
+
+        // Function to place an order and save it to the history
+        function placeOrder() {
+            const itemName = document.getElementById('item-name').value;
+            const quantity = document.getElementById('quantity').value;
+            const delivery = document.getElementById('delivery').value;
+            const timestamp = new Date().toLocaleString();
+
+            const tableBody = document.getElementById('history-table-body');
+            const newRow = document.createElement('tr');
+
+            newRow.innerHTML = `
+                <td>${itemName}</td>
+                <td>${quantity}</td>
+                <td>${delivery}</td>
+                <td>${timestamp}</td>
+            `;
+
+            tableBody.appendChild(newRow);
+
+            // Clear the form fields
+            document.getElementById('item-name').value = '';
+            document.getElementById('quantity').value = '';
+            document.getElementById('delivery').value = 'home';
+        }
+
+        // Function to reset the order history
+        function resetOrders() {
+            const tableBody = document.getElementById('history-table-body');
+            tableBody.innerHTML = ''; // Clear all rows from the order history table
+        }
+    </script>
+</body>
+</html>
